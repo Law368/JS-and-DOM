@@ -1,5 +1,4 @@
 //IE Support Node List Polyfill
-console.log(555);
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = function (callback, thisArg) {
     thisArg = thisArg || window;
@@ -47,4 +46,48 @@ document.querySelectorAll('.dropdown').forEach(function (dropDownWrapper) {
       console.log(event.currentTarget);
     }
   });
+
+  const selectItems = [
+    {
+      label: 'Bawcomville',
+      id: 0,
+    },
+    {
+      label: 'Rushford',
+      id: 1,
+    },
+    {
+      label: 'Bayview',
+      id: 2,
+    },
+    {
+      label: 'Something',
+      id: 3,
+    },
+    {
+      label: 'New',
+      id: 4,
+    },
+    {
+      label: 'I',
+      id: 5,
+    },
+    {
+      label: 'Made',
+      id: 6,
+    },
+  ];
+
+  window.onload = function insertOptions() {
+    for (var i = 0; i < selectItems.length; i = i + 1) {
+      var selectOptionLabel = selectItems[i].label;
+      var selectOptionID = selectItems[i].id;
+      var li = document.createElement('li');
+      li.appendChild(document.createTextNode(selectOptionLabel));
+      li.setAttribute('id', selectOptionID);
+      li.classList.add('dropdown__list-item');
+      dropdownList.appendChild(li);
+      console.log(li.id);
+    }
+  };
 });
