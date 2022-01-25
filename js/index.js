@@ -19,8 +19,6 @@ function checkListPosition() {
   }
 }
 
-console.log('9999');
-
 document.addEventListener('scroll', function () {
   dropdownList.classList.remove('dropdown__list--visible');
 });
@@ -77,18 +75,7 @@ function insertOptions() {
       dropdownList.classList.remove('dropdown__list--visible');
     });
     dropdownList.appendChild(li);
-    console.log(li.id);
   }
-}
-
-//IE Support Node List Polyfill
-if (window.NodeList && !NodeList.prototype.forEach) {
-  NodeList.prototype.forEach = function (callback, thisArg) {
-    thisArg = thisArg || window;
-    for (var i = 0; i < this.length; i++) {
-      callback.call(thisArg, this[i], i, this);
-    }
-  };
 }
 
 insertOptions();
@@ -122,9 +109,7 @@ document.addEventListener('click', function (event) {
   if (!dropdown.contains(event.target)) {
     dropdownList.classList.remove('dropdown__list--visible');
     dropdown.classList.remove('dropdown__bar--active');
-    console.log(event.currentTarget);
     input.value = selectedOption;
-    console.log(input.value);
   }
 });
 
@@ -133,10 +118,11 @@ document.addEventListener('click', function (event) {
 input.addEventListener('keyup', filterNames);
 function filterNames() {
   // get value of input
-  let filterValue = input.value.toUpperCase();
-  for (let i = 0; i < listItems.length; i = i + 1) {
-    let listItem = listItems[i];
-    if (listItem.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+
+  var filterValue = input.value.toUpperCase();
+  for (var i = 0; i < listItems.length; i = i + 1) {
+    var listItem = listItems[i];
+    if (listItem.innerHTML.toUpperCase().lastIndexOf(filterValue, 0) === 0) {
       listItem.style.display = '';
     } else {
       listItem.style.display = 'none';
