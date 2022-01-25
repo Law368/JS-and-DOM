@@ -5,19 +5,15 @@
   padding: 0;
 }
 
-html,
-body {
-  /* height: 100%; */
-
-  /* overflow: hidden; */
-  font-family: 'Verdana', sans-serif;
+html {
+  height: 100%;
 }
 
 body {
-  height: 2500px;
   overflow-y: scroll;
   background: linear-gradient(#e66465, #9198e5);
   background-repeat: no-repeat;
+  font-family: 'Verdana', sans-serif;
 }
 
 .form-group {
