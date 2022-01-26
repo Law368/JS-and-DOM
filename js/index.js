@@ -83,37 +83,19 @@ function insertOptions() {
 dropdownList.append(insertOptions());
 var listItems = dropdownList.querySelectorAll('.dropdown__list-item');
 
-// new function
-
+// universal addeventListener
 [button, input].forEach((item) => {
-  item.addEventListener('click', (event) => {
-    console.log(item);
-    console.log(this); // почему this относится к Window но не к button или input?
-    if (item === button) {
+  item.addEventListener('click', function () {
+    if (this === button) {
       dropdownList.classList.toggle('dropdown__list--visible');
       input.focus();
-    } else if (item === input) {
+    } else if (this === input) {
       dropdownList.classList.add('dropdown__list--visible');
     }
     checkListPosition();
     input.value = '';
   });
 });
-
-// // Click on the button Open/Close the list
-// button.addEventListener('click', function () {
-//   dropdownList.classList.toggle('dropdown__list--visible');
-//   checkListPosition();
-//   input.focus();
-//   input.value = '';
-// });
-
-// // Click on the input Open/Close the list
-// input.addEventListener('click', function () {
-//   dropdownList.classList.add('dropdown__list--visible');
-//   checkListPosition();
-//   input.value = '';
-// });
 
 // Click outside of dropdownWrapper
 document.addEventListener('click', function (event) {
