@@ -37,15 +37,15 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.dropdown__bar {
+.dropdown__wrapper {
   width: 100%;
   font-size: 0;
   border: 1px solid #7e9bbd;
   border-radius: 6px;
 }
 
-.dropdown__bar:focus-within,
-.dropdown__bar--active {
+.dropdown__wrapper:focus-within,
+.dropdown__wrapper--active {
   box-shadow: 0 0 0 4px rgb(176 198 225 / 60%);
 }
 

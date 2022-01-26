@@ -1,11 +1,11 @@
-var dropdown = document.querySelector('.dropdown__bar');
+var dropdownWrapper = document.querySelector('.dropdown__wrapper');
 var input = document.querySelector('.dropdown__input');
 var button = document.querySelector('.dropdown__button');
 var dropdownList = document.querySelector('.dropdown__list');
 var selectedOption = '';
 
 function checkListPosition() {
-  var windowHeight = window.innerHeight;
+  var windowHeight = document.documentElement.clientHeight;
   var listHeight = dropdownList.offsetHeight;
   var distanceToTop =
     window.pageYOffset + dropdownList.getBoundingClientRect().top;
@@ -58,6 +58,7 @@ var selectItems = [
   },
 ];
 function insertOptions() {
+  var fragment = new DocumentFragment();
   for (var i = 0; i < selectItems.length; i = i + 1) {
     var selectOptionLabel = selectItems[i].label;
     var selectOptionID = selectItems[i].id;
@@ -70,62 +71,77 @@ function insertOptions() {
       event.stopPropagation();
       input.value = this.innerText;
       selectedOption = this.innerText;
-      dropdown.classList.add('dropdown__bar--active');
+      dropdownWrapper.classList.add('dropdown__wrapper--active');
       input.focus();
       dropdownList.classList.remove('dropdown__list--visible');
     });
-    dropdownList.appendChild(li);
+    fragment.appendChild(li);
   }
+  return fragment;
 }
 
-insertOptions();
+dropdownList.append(insertOptions());
 var listItems = dropdownList.querySelectorAll('.dropdown__list-item');
 
-// Click on the button Open/Close the list
-button.addEventListener('click', function () {
-  dropdownList.classList.toggle('dropdown__list--visible');
-  checkListPosition();
-  input.focus();
-  input.value = '';
-  for (var i = 0; i < listItems.length; i++) {
-    var listItem = listItems[i];
-    listItem.style.display = '';
-  }
+// new function
+
+[button, input].forEach((item) => {
+  item.addEventListener('click', (event) => {
+    console.log(item);
+    console.log(this); // почему this относится к Window но не к button или input?
+    if (item === button) {
+      dropdownList.classList.toggle('dropdown__list--visible');
+      input.focus();
+    } else if (item === input) {
+      dropdownList.classList.add('dropdown__list--visible');
+    }
+    checkListPosition();
+    input.value = '';
+  });
 });
 
-// Click on the input Open/Close the list
-input.addEventListener('click', function () {
-  dropdownList.classList.add('dropdown__list--visible');
-  checkListPosition();
-  input.value = '';
-  for (var i = 0; i < listItems.length; i++) {
-    var listItem = listItems[i];
-    listItem.style.display = '';
-  }
-});
+// // Click on the button Open/Close the list
+// button.addEventListener('click', function () {
+//   dropdownList.classList.toggle('dropdown__list--visible');
+//   checkListPosition();
+//   input.focus();
+//   input.value = '';
+// });
 
-// Click outside of DropDown
+// // Click on the input Open/Close the list
+// input.addEventListener('click', function () {
+//   dropdownList.classList.add('dropdown__list--visible');
+//   checkListPosition();
+//   input.value = '';
+// });
+
+// Click outside of dropdownWrapper
 document.addEventListener('click', function (event) {
-  if (!dropdown.contains(event.target)) {
+  if (!dropdownWrapper.contains(event.target)) {
     dropdownList.classList.remove('dropdown__list--visible');
-    dropdown.classList.remove('dropdown__bar--active');
+    dropdownWrapper.classList.remove('dropdown__wrapper--active');
     input.value = selectedOption;
   }
 });
 
 // Filter function
-
 input.addEventListener('keyup', filterNames);
-function filterNames() {
-  // get value of input
 
+function filterNames() {
   var filterValue = input.value.toUpperCase();
   for (var i = 0; i < listItems.length; i = i + 1) {
     var listItem = listItems[i];
-    if (listItem.innerHTML.toUpperCase().lastIndexOf(filterValue, 0) === 0) {
+    if (listItem.innerHTML.toUpperCase().indexOf(filterValue, 0) === 0) {
       listItem.style.display = '';
     } else {
       listItem.style.display = 'none';
     }
   }
 }
+
+// Использовать document fragment +
+// разбить js файл на части
+// написать одну функцию для проверки клика по кнопке или инпуту
+// всплытие и погружение
+// Введение в события
+// особенности стд поведения формы/перезагрузка, как работаю кнопки в роли сабмит, как указать адрес дляотправки формы
