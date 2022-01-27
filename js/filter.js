@@ -1,6 +1,5 @@
-import { input, dropdownList } from './variables.js';
-// import { listItems } from './index.js';
-
+// import { input, dropdownList } from './variables.js';
+(function(){
 function filterNames() {
   var listItems = dropdownList.querySelectorAll('.dropdown__list-item');
   var filterValue = input.value.toUpperCase();
@@ -14,4 +13,12 @@ function filterNames() {
   }
 }
 
-export { filterNames };
+window.variables.input;
+window.variables.dropdownList;
+
+window.filter = {
+  filterNames: filterNames,
+}
+
+// export { filterNames };
+})();

@@ -1,6 +1,6 @@
-import { dropdownList, button, input } from './variables.js';
-import { checkListPosition } from './checkListPosition.js';
-
+// import { dropdownList, button, input } from './variables.js';
+// import { checkListPosition } from './checkListPosition.js';
+(function(){
 // universal addeventListener that should work with IE 9
 var addDropdownListHandlers = function (arr) {
   arr.forEach(function (element) {
@@ -17,4 +17,15 @@ var addDropdownListHandlers = function (arr) {
   });
 };
 
-export { addDropdownListHandlers };
+window.variables.dropdownList;
+window.variables.button;
+window.variables.input;
+
+window.checkListPosition.checkListPosition;
+
+window.addDropdownListHandlers = {
+  addDropdownListHandlers: addDropdownListHandlers,
+}
+
+// export { addDropdownListHandlers };
+})();

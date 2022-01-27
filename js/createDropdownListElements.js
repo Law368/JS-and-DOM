@@ -1,11 +1,11 @@
-import {
-  input,
-  dropdownList,
-  selectItems,
-  selectedOption,
-  dropdownWrapper,
-} from './variables.js';
-
+// import {
+//   input,
+//   dropdownList,
+//   selectItems,
+//   selectedOption,
+//   dropdownWrapper,
+// } from './variables.js';
+(function(){
 function createDropdownListElements() {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < selectItems.length; i = i + 1) {
@@ -29,4 +29,15 @@ function createDropdownListElements() {
   return fragment;
 }
 
-export { createDropdownListElements };
+window.variables.input;
+window.variables.dropdownList;
+window.variables.selectItems;
+window.variables.selectedOption;
+window.variables.dropdownWrapper;
+
+window.createDropdownListElements = {
+  createDropdownListElements: createDropdownListElements,
+}
+
+// export { createDropdownListElements };
+})();
