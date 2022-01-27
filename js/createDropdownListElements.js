@@ -6,8 +6,8 @@ import {
   dropdownWrapper,
 } from './variables.js';
 
-function insertOptions() {
-  var fragment = new DocumentFragment();
+function createDropdownListElements() {
+  var fragment = document.createDocumentFragment();
   for (var i = 0; i < selectItems.length; i = i + 1) {
     var selectOptionLabel = selectItems[i].label;
     var selectOptionID = selectItems[i].id;
@@ -29,4 +29,4 @@ function insertOptions() {
   return fragment;
 }
 
-export { insertOptions };
+export { createDropdownListElements };

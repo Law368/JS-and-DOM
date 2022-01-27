@@ -1,7 +1,8 @@
-import { input } from './variables.js';
-import { listItems } from './index.js';
+import { input, dropdownList } from './variables.js';
+// import { listItems } from './index.js';
 
 function filterNames() {
+  var listItems = dropdownList.querySelectorAll('.dropdown__list-item');
   var filterValue = input.value.toUpperCase();
   for (var i = 0; i < listItems.length; i = i + 1) {
     var listItem = listItems[i];

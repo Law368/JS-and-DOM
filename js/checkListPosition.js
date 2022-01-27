@@ -1,6 +1,6 @@
 import { dropdownList } from './variables.js';
 
-function checkListPosition() {
+export function checkListPosition() {
   var windowHeight = document.documentElement.clientHeight;
   var listHeight = dropdownList.offsetHeight;
   var distanceToTop =
@@ -14,5 +14,3 @@ function checkListPosition() {
     dropdownList.style.top = '52px';
   }
 }
-
-export { checkListPosition };
