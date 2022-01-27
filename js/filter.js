@@ -1,8 +1,8 @@
 // import { input, dropdownList } from './variables.js';
 (function(){
 function filterNames() {
-  var listItems = dropdownList.querySelectorAll('.dropdown__list-item');
-  var filterValue = input.value.toUpperCase();
+  var listItems = window.variables.dropdownList.querySelectorAll('.dropdown__list-item');
+  var filterValue = window.variables.input.value.toUpperCase();
   for (var i = 0; i < listItems.length; i = i + 1) {
     var listItem = listItems[i];
     if (listItem.innerHTML.toUpperCase().indexOf(filterValue, 0) === 0) {
@@ -13,8 +13,8 @@ function filterNames() {
   }
 }
 
-window.variables.input;
-window.variables.dropdownList;
+;
+;
 
 window.filter = {
   filterNames: filterNames,

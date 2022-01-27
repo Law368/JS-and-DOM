@@ -2,20 +2,20 @@
 (function(){
   function checkListPosition() {
   var windowHeight = document.documentElement.clientHeight;
-  var listHeight = dropdownList.offsetHeight;
+  var listHeight = window.variables.dropdownList.offsetHeight;
   var distanceToTop =
-    window.pageYOffset + dropdownList.getBoundingClientRect().top;
+    window.pageYOffset + window.variables.dropdownList.getBoundingClientRect().top;
   var distanceToBottom = windowHeight - (listHeight + distanceToTop);
   if (distanceToBottom < 0) {
-    dropdownList.style.bottom = '52px';
-    dropdownList.style.top = 'auto';
+    window.variables.dropdownList.style.bottom = '52px';
+    window.variables.dropdownList.style.top = 'auto';
   } else {
-    dropdownList.style.bottom = 'auto';
-    dropdownList.style.top = '52px';
+    window.variables.dropdownList.style.bottom = 'auto';
+    window.variables.dropdownList.style.top = '52px';
   }
 }
 
-window.variables.dropdownList;
+;
 
 window.checkListPosition = {
   checkListPosition: checkListPosition,

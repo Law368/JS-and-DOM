@@ -14,39 +14,26 @@
 
 (function(){
 document.addEventListener('scroll', function () {
-  dropdownList.classList.remove('dropdown__list--visible');
+  window.variables.dropdownList.classList.remove('dropdown__list--visible');
 });
 
 window.addEventListener('resize', function () {
-  dropdownList.classList.remove('dropdown__list--visible');
+  window.variables.dropdownList.classList.remove('dropdown__list--visible');
 });
 
 // Click outside of dropdownWrapper
 document.addEventListener('click', function (event) {
-  if (!dropdownWrapper.contains(event.target)) {
-    dropdownList.classList.remove('dropdown__list--visible');
-    dropdownWrapper.classList.remove('dropdown__wrapper--active');
-    input.value = selectedOption.str;
+  if (!window.variables.dropdownWrapper.contains(event.target)) {
+    window.variables.dropdownList.classList.remove('dropdown__list--visible');
+    window.variables.dropdownWrapper.classList.remove('dropdown__wrapper--active');
+    window.variables.input.value = window.variables.selectedOption.str;
   }
 });
 
-input.addEventListener('keyup', filterNames);
-dropdownList.appendChild(createDropdownListElements());
-addDropdownListHandlers([input, button]);
+window.variables.input.addEventListener('keyup', window.filter.filterNames);
+window.variables.dropdownList.appendChild(window.createDropdownListElements.createDropdownListElements());
+window.addDropdownListHandlers.addDropdownListHandlers([window.variables.input, window.variables.button]);
 
-window.variables.button;
-window.variables.input;
-window.variables.dropdownList;
-window.variables.selectItems;
-window.variables.selectedOption;
-window.variables.dropdownWrapper;
 
-window.addDropdownListHandlers.addDropdownListHandlers;
-
-window.checkListPosition.checkListPosition;
-
-window.createDropdownListElements.createDropdownListElements;
-
-window.filter.filterNames;
 
 })();
